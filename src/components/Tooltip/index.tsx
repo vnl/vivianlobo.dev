@@ -32,7 +32,28 @@ function Tooltip(props: Props) {
     "Stop, please!",
     "Okay, last one!",
     "That's it, I'm done!",
-  ];
+    "You're breaking my spirit!",
+    "Click, click, click... why?",
+    "Do I look like a button?",
+    "Still clicking? Bold move!",
+    "Patience is a virtue, you know.",
+    "You're testing my limits!",
+    "Why are we still here, just to click?",
+    "This is not a game, or is it?",
+    "I hope you're having fun!",
+    "Click responsibly!",
+    "Warning: Click fatigue imminent.",
+    "One more click and I’m calling HR!",
+    "Click therapy session, anyone?",
+    "I’m starting to feel used!",
+    "You must really like buttons.",
+    "Should we make this official?",
+    "Click me one more time, Britney!",
+    "You’re in click denial!",
+    "This isn’t what I signed up for!",
+    "Okay, now I’m impressed.",
+    "Let’s call it a day, shall we?"
+];
 
   const currentMessage = () => {
     const count = clickCount();

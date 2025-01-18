@@ -1,21 +1,24 @@
 ---
-import { getCurrentTimeInItaly, formatTimeForItaly } from "../lib/helpers";
+import { getUKTime, formatUKTime, formatLocalTime } from "../lib/helpers";
 import Card from "./Card/index.astro";
 ---
 
 <script>
   import { onCleanup, onMount } from "solid-js";
-  import { formatTimeForItaly } from "../lib/helpers";
+  import { formatUKTime, formatLocalTime } from "../lib/helpers";
 
   let interval: ReturnType<typeof setInterval>;
 
   function updateClock() {
-    const timeDisplay = document.getElementById("timeDisplay");
     const now = new Date();
+    const ukTimeDisplay = document.getElementById("ukTimeDisplay");
+    const localTimeDisplay = document.getElementById("localTimeDisplay");
 
-    if (timeDisplay) {
-      timeDisplay.textContent = formatTimeForItaly(now);
-      timeDisplay.setAttribute("datetime", now.toISOString());
+    if (ukTimeDisplay && localTimeDisplay) {
+      ukTimeDisplay.textContent = formatUKTime(now);
+      localTimeDisplay.textContent = formatLocalTime(now);
+      ukTimeDisplay.setAttribute("datetime", now.toISOString());
+      localTimeDisplay.setAttribute("datetime", now.toISOString());
     }
   }
 
@@ -29,11 +32,26 @@ import Card from "./Card/index.astro";
 </script>
 
 <Card colSpan="lg:col-span-2" rowSpan="md:row-span-2" title="Time zone">
-  <time
-    datetime=""
-    id="timeDisplay"
-    class="text-2xl xl:text-5xl xl:whitespace-nowrap w-50 xl:w-100 h-[calc(100%-28px)] font-serif flex justify-center items-center"
-  >
-    {formatTimeForItaly(getCurrentTimeInItaly())}
-  </time>
+  <div class="grid grid-cols-2 gap-4 h-[calc(100%-28px)]">
+    <div class="flex flex-col items-center justify-center p-4 bg-darkslate-400 rounded-lg border border-darkslate-100">
+      <div class="text-sm text-gray-400 mb-1">UK Time</div>
+      <time
+        datetime=""
+        id="ukTimeDisplay"
+        class="text-lg xl:text-2xl font-mono text-gray-100"
+      >
+        {formatUKTime(getUKTime())}
+      </time>
+    </div>
+    <div class="flex flex-col items-center justify-center p-4 bg-darkslate-400 rounded-lg border border-darkslate-100">
+      <div class="text-sm text-gray-400 mb-1">Local Time</div>
+      <time
+        datetime=""
+        id="localTimeDisplay"
+        class="text-lg xl:text-2xl font-mono text-gray-100"
+      >
+        {formatLocalTime(new Date())}
+      </time>
+    </div>
+  </div>
 </Card>
