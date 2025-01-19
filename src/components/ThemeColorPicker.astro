@@ -1,0 +1,84 @@
+---
+const colors = [
+  { name: 'default', class: 'bg-[#e63946]', tooltip: 'Ruby Red' },
+  { name: 'yellow-theme', class: 'bg-yellow-500', tooltip: 'Amber Yellow' },
+  { name: 'blue-theme', class: 'bg-blue-500', tooltip: 'Royal Blue' },
+  { name: 'purple-theme', class: 'bg-purple-500', tooltip: 'Royal Purple' },
+  { name: 'green-theme', class: 'bg-green-500', tooltip: 'Emerald Green' }
+];
+---
+
+<div class="flex theme-colors items-center w-full px-6 py-5 bg-zinc-900 rounded-lg gap-6" id="theme-picker">
+  {
+    colors.map(({ name, class: bgClass, tooltip }) => (
+      <div
+        class={`relative w-10 h-10 rounded-full cursor-pointer transition-all duration-200 hover:scale-110 ${bgClass}`}
+        data-theme={name}
+        data-tooltip={tooltip}
+      />
+    ))
+  }
+</div>
+
+<style>
+  [data-tooltip] {
+    position: relative;
+  }
+  
+  [data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.25rem 0.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    z-index: 10;
+  }
+</style>
+
+<script>
+  function initThemePicker() {
+    const buttons = document.querySelectorAll('#theme-picker [data-theme]');
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('themeColor');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const theme = button.getAttribute('data-theme');
+        let color = '#e63946'; // default color
+
+        // Map theme names to their hex values
+        switch(theme) {
+          case 'yellow-theme':
+            color = '#f59e0b';
+            break;
+          case 'blue-theme':
+            color = '#3b82f6';
+            break;
+          case 'purple-theme':
+            color = '#8b5cf6';
+            break;
+          case 'green-theme':
+            color = '#10b981';
+            break;
+        }
+
+        root.style.setProperty('--theme-primary', color);
+        localStorage.setItem('themeColor', color);
+      });
+    });
+
+    // Set initial theme color
+    if (savedTheme) {
+      root.style.setProperty('--theme-primary', savedTheme);
+    }
+  }
+
+  // Initialize theme picker
+  initThemePicker();
+</script>

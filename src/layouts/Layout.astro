@@ -11,6 +11,17 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  <script>
+    // Load theme color as early as possible to avoid flash
+    const savedTheme = localStorage.getItem('themeColor') || '#E63946';
+    document.documentElement.style.setProperty('--theme-primary', savedTheme);
+  </script>
+</head>
 <BasicLayout title={title} description={description}>
   <div
     slot="loader"
