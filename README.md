@@ -1,6 +1,6 @@
 # ⚡️astro-bento-portfolio
 
-## A personal portfolio website made using `Astro`.
+## A personal portfolio website made using `Astro`. heavily inspired by Gianmarco
 
 ![astro-bento-portfolio | Bento-like Personal Porfolio Template](public/preview.png)
 
@@ -14,7 +14,7 @@ or my portfolio **[click here](https://gianmarcocavallo.com)**
 - All in one page (almost)
 - Fully Responsive
 - Performances and SEO optimizations
-- Ready to be deployed on [Netlify](https://www.netlify.com/)
+- Ready to be deployed on [Cloudflare Pages](https://pages.cloudflare.com/)
 - Blog
 - RSS support (your-domain/rss.xml)
 - Cool 3d globe
@@ -47,7 +47,7 @@ $ npm install
 
 ```bash
 # Start the project in development
-$ pnpm run dev
+$ pnpm run dev #suggest using pnpm
 or
 $ npm run dev
 ```
@@ -60,16 +60,7 @@ $ npm run dev
 
 remember to replace the `site` and other properties with your data in `astro.config.mjs`
 
-# Deploy on Netlify 🚀
 
-Deploying your website on Netlify it's optional but I reccomand it in order to deploy it faster and easly.
-
-You just need to fork this repo and linking it to your Netlify account.
-
-or
-
-[![Netlify Deploy button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Ladvace/astro-bento-portfolio)
-
-## Authors ❤️
+## Authors ❤️ and original owner
 
 - Gianmarco - https://github.com/Ladvace
